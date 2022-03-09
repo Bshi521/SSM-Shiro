@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aiit.dao.RoleDao">
+    <select id="listSysRolesByUserName"  parameterType="string" resultType="string">
+        select r.role_name from t_user u
+        left join t_user_role ur on u.id = ur.user_id
+        left join t_role r on r.id = ur.role_id
+        where u.loginname = #{loginname}
+    </select>
+</mapper>

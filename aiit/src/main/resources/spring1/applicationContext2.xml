@@ -125,14 +125,47 @@
     </bean>
 
     <!--    开启shiro的注解使用-->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-          depends-on="lifecycleBeanPostProcessor" />
+<!--    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"-->
+<!--          depends-on="lifecycleBeanPostProcessor" />-->
 
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager" />
+<!--    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
+<!--        <property name="securityManager" ref="securityManager" />-->
+<!--    </bean>-->
+
+<!--配置shiroFilter-->
+    <!--    配置SecurityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+    </bean>
+
+    <!--    自定义Realm-->
+    <bean id="myRealm" class="com.aiit.realm.MyRealm"/>
+
+<!--    Shirofiler,生产SpringShiroFilter(持有shiro的过滤的相关规则，可以进行请求的过滤校验，校验是否合法)-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+<!--    注入核心对象-->
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="/login"></property>
+        <property name="unauthorizedUrl" value="/login/permsError"></property>
+<!--        过滤器器链-->
+        <property name="filterChainDefinitions">
+            <value>
+                /login=anon
+                /doLogin=anon
+                /manager/**=authc,perms["manager:*"]
+                /reader/**=authc,perms["reader:*"]
+                /logout=logout
+            </value>
+        </property>
     </bean>
 
 
-
-
+<!--配置异常解析器-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authc.AuthenticationException">/login/authcError</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

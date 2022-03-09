@@ -40,8 +40,8 @@
     </script>
 </head>
 <body>
-<form action="<%=basePath %>/login/doLogin" method="post" id="userForm">
-     登录用户名：<input type="text" name="username"><br><br><br>
+<form action="<%=basePath %>doLogin" method="post" id="userForm">
+     登录用户名：<input type="text" name="loginname"><br><br><br>
     登录密码：<input type="text" name="password"><br><br><br>
     <input type="submit" value="提交"  >
 </form>
