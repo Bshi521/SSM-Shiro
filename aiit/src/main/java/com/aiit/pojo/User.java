@@ -12,5 +12,7 @@ public class User {
     private String loginname;
     private String password;
     private String username;
+//    第二次作业 盐值
+    private String salt;
     private Integer status;
 }

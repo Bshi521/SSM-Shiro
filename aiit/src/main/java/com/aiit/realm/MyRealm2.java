@@ -1,7 +1,5 @@
 package com.aiit.realm;
 
-import com.aiit.pojo.Permission;
-import com.aiit.pojo.Role;
 import com.aiit.pojo.User;
 import com.aiit.service.PermissionService;
 import com.aiit.service.RoleService;
@@ -14,10 +12,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 import java.util.Set;
 
-public class MyRealm extends AuthorizingRealm {
+public class MyRealm2 extends AuthorizingRealm {
     @Autowired
     RoleService roleService;
 

@@ -45,6 +45,7 @@
     登录密码：<input type="text" name="password"><br><br><br>
     <input type="submit" value="提交"  >
 </form>
+<a href="<%=basePath %>regist">点我跳转注册页面</a>
 
 
 

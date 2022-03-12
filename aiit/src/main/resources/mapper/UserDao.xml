@@ -8,7 +8,7 @@
         select * from  t_user where loginname = #{0}
     </select>
 
-    <insert id="insertSysUser" parameterType="User">
-        INSERT INTO sys_user(username,password,salt) VALUE (#{username},#{password}, #{salt})
+    <insert id="saveUser" parameterType="User">
+        INSERT INTO t_user(loginname,password,salt) VALUE (#{loginname},#{password},#{salt})
     </insert>
 </mapper>

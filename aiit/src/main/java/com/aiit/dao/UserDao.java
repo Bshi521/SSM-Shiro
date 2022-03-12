@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
     User getUserByName(String loginname);
+
+    int saveUser(User user);
 }

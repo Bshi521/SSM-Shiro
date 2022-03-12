@@ -17,10 +17,11 @@
     <title>注册用户</title>
 </head>
 <body>
-<form action="<%=basePath %>/login/doRegist" method="post" id="userForm">
-  注册用户名：<input type="text" name="username"><br><br><br>
+<form action="<%=basePath %>doRegist" method="POST" id="userForm">
+  注册用户名：<input type="text" name="loginname"><br><br><br>
     注册密码：<input type="text" name="password"><br><br><br>
   <input type="submit" value="提交"  >
 </form>
+<div>${msg}</div>
 </body>
 </html>

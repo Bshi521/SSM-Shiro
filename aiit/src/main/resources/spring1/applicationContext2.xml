@@ -136,10 +136,33 @@
     <!--    配置SecurityManager-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
+        <property name="authenticator" ref="authenticator"></property>
     </bean>
 
     <!--    自定义Realm-->
-    <bean id="myRealm" class="com.aiit.realm.MyRealm"/>
+    <bean id="myRealm" class="com.aiit.realm.MyRealm">
+<!--        告诉realm和注册一直的加密方法-->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <property name="hashIterations" value="1024"></property>
+<!--                存储密码是否是16进制-->
+                <property name="storedCredentialsHexEncoded" value="false"></property>
+            </bean>
+        </property>
+    </bean>
+    <!--    自定义Realm-->
+    <bean id="myRealm2" class="com.aiit.realm.MyRealm2">
+        <!--        告诉realm和注册一直的加密方法-->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="SHA-256"></property>
+                <property name="hashIterations" value="1024"></property>
+                <!--                存储密码是否是16进制-->
+                <property name="storedCredentialsHexEncoded" value="false"></property>
+            </bean>
+        </property>
+    </bean>
 
 <!--    Shirofiler,生产SpringShiroFilter(持有shiro的过滤的相关规则，可以进行请求的过滤校验，校验是否合法)-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -151,6 +174,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /login=anon
+                /regist=anon
                 /doLogin=anon
                 /manager/**=authc,perms["manager:*"]
                 /reader/**=authc,perms["reader:*"]
@@ -158,7 +182,15 @@
             </value>
         </property>
     </bean>
-
+<!--配置多个realm-->
+    <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+        <property name="realms">
+            <list>
+                <ref bean="myRealm"></ref>
+                <ref bean="myRealm2"></ref>
+            </list>
+        </property>
+    </bean>
 
 <!--配置异常解析器-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
