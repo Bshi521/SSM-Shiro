@@ -124,14 +124,6 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!--    开启shiro的注解使用-->
-<!--    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"-->
-<!--          depends-on="lifecycleBeanPostProcessor" />-->
-
-<!--    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
-<!--        <property name="securityManager" ref="securityManager" />-->
-<!--    </bean>-->
-
 <!--配置shiroFilter-->
     <!--    配置SecurityManager-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">

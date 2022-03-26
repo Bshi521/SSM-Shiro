@@ -24,14 +24,6 @@
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
-<!--    <init-param>-->
-<!--      <param-name>contextConfigLocation</param-name>-->
-<!--      <param-value>-->
-<!--          classpath:spring/applicationContext.xml,-->
-<!--          classpath:spring/spring-shiro.xml-->
-<!--          classpath:spring1/spring-mvc.xml-->
-<!--      </param-value>-->
-<!--    </init-param>-->
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>
@@ -60,53 +52,6 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-
-
-
-
-  <!-- shiro过虑器，DelegatingFilterProxy通过代理模式将spring容器中的bean和filter关联起来 -->
-<!--  <filter>-->
-<!--    <filter-name>shiroFilter</filter-name>-->
-<!--    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-<!--    &lt;!&ndash; 设置true由servlet容器控制filter的生命周期 &ndash;&gt;-->
-<!--    <init-param>-->
-<!--      <param-name>targetFilterLifecycle</param-name>-->
-<!--      <param-value>true</param-value>-->
-<!--    </init-param>-->
-<!--  </filter>-->
-<!--  <filter-mapping>-->
-<!--    <filter-name>shiroFilter</filter-name>-->
-<!--    <url-pattern>/*</url-pattern>-->
-<!--  </filter-mapping>-->
-
-
-<!--  <listener>-->
-<!--    <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>-->
-<!--  </listener>-->
-
-
-<!--  <filter>-->
-<!--    <filter-name>shiroFilter</filter-name>-->
-<!--    <filter-class>-->
-<!--      org.apache.shiro.web.servlet.ShiroFilter-->
-<!--    </filter-class>-->
-<!--  </filter>-->
-
-<!--  <filter-mapping>-->
-<!--    <filter-name>shiroFilter</filter-name>-->
-<!--    <url-pattern>/*</url-pattern>-->
-<!--  </filter-mapping>-->
-
-
-<!--  <context-param>-->
-<!--    <param-name>shiroEnvironmentClass</param-name>-->
-<!--    <param-value>org.apache.shiro.web.env.IniWebEnvironment</param-value>-->
-<!--  </context-param>-->
-
-<!--  <context-param>-->
-<!--    <param-name>shiroConfigLocations</param-name>-->
-<!--    <param-value>classpath:shiroTest.ini</param-value>-->
-<!--  </context-param>-->
   <!-- druid连接池 启用 Web 监控统计功能    start-->
   <filter>
     <filter-name>DruidWebStatFilter</filter-name>
